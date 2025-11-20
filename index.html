@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Simple Login Demo</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f1f1f1; /* default background */
+    transition: background 0.5s ease;
+  }
+
+  #login-box, #hello-box {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.15);
+    width: 280px;
+    text-align: center;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #888;
+  }
+
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #3498db;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  #hello-box {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div id="login-box">
+  <h2>Login</h2>
+
+  <input id="user" type="text" placeholder="Username" />
+  <input id="pass" type="password" placeholder="Password" />
+
+  <button onclick="login()">Login</button>
+
+  <p id="error" style="color:red; display:none; margin-top:10px;">
+    Invalid username or password.
+  </p>
+</div>
+
+<div id="hello-box">
+  <h1>Hello World!</h1>
+</div>
+
+<script>
+  function login() {
+    const username = document.getElementById("user").value;
+    const password = document.getElementById("pass").value;
+
+    const validUser = "admin";
+    const validPass = "password";
+
+    if (username === validUser && password === validPass) {
+      document.getElementById("login-box").style.display = "none";
+      document.getElementById("hello-box").style.display = "block";
+
+      // Turn background green after login
+      document.body.style.background = "#2e2e71";
+    } else {
+      document.getElementById("error").style.display = "block";
+    }
+  }
+</script>
+
+</body>
+</html>
+
