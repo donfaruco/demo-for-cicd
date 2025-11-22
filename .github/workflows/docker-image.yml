@@ -14,10 +14,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build Docker image
-        run: docker build -t ${{ vars.DOCKER_USERNAME }}/color-app:latest . # Replace my-app with your repository name
+        run: docker build -t ${{ vars.DOCKER_USERNAME }}/faacicd:latest . # Replace my-app with your repository name
 
       - name: Log in to Docker Hub
         run: docker login -u ${{ vars.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image to Docker Hub
-        run: docker push ${{ vars.DOCKER_USERNAME }}/color-app:latest # Replace my-app with your repository name
+        run: docker push ${{ vars.DOCKER_USERNAME }}/faacicd:latest # Replace my-app with your repository name
