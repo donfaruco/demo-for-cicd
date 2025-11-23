@@ -21,3 +21,27 @@ jobs:
 
       - name: Push Docker image to Docker Hub
         run: docker push ${{ vars.DOCKER_USERNAME }}/faacicd:latest # Replace my-app with your repository name
+
+        # Terraform work
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "latest"
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ./terraform # Assuming your Terraform files are in a 'terraform' directory
+
+      - name: Terraform Plan
+        run: terraform plan -input=false
+        working-directory: ./terraform
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -input=false
+        working-directory: ./terraform
+        env:
+              # Example: AWS credentials for Terraform
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+
+        
